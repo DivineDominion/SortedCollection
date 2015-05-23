@@ -61,6 +61,11 @@ public struct SortedCollection<T: Comparable> : Printable, SortedCollectionType 
         return contents.count
     }
     
+    /// `true` iff the `SortedCollection` is empty.
+    public var isEmpty: Bool {
+        return contents.isEmpty
+    }
+    
     /// A string representation of the `SortedCollection`.
     public var description: String {
         return contents.description
@@ -170,6 +175,26 @@ extension SortedCollection : CollectionType {
     /// Read-only to ensure sorting - use `insert` to add new elements.
     public subscript(i: Int) -> T {
         return contents[i]
+    }
+}
+
+extension SortedCollection {
+    /// The first element, or `nil` if empty.
+    public var first: Element? {
+        if isEmpty {
+            return nil
+        }
+        
+        return contents[startIndex]
+    }
+    
+    /// The last element, or `nil` if empty.
+    public var last: Element? {
+        if isEmpty {
+            return nil
+        }
+        
+        return contents[endIndex - 1]
     }
 }
 
